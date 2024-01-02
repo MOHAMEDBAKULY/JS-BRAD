@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* background: white; */
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.3;
+    /* background: white; */
+}
+
+.hidden{
+    display: none;
+}
+
+.Display{
+    background: #0f8105;
+    border: 3px blueviolet solid;
+    padding: 15px;
+}
+
+.dark{
+    background-color: rgb(226, 45, 45);
+    color:black;
+}

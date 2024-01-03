@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="Option.js" defer></script>
+    <script src="delegation.js" defer></script>
    <link
     href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,500;0,700;0,800;1,100;1,200;1,300;1,500;1,600;1,800&family=Oswald:wght@300;400;600&family=Overpass:wght@100;200;300;400;500;600;700&display=swap" 
     rel="stylesheet">   
@@ -23,49 +23,49 @@
       <h1 class="head">Shopping List</h1>
     </div>
 
-    <form id="item-form">
-      <div class="EnterItem">
-        <input class="One" type="text" name="Item" placeholder="Enter Item">
+<form id="item-form">
+<div class="EnterItem">
+<input class="One" type="text" name="Item" placeholder="Enter Item">
+</div>
+<div id="Add-btn">
+<button class="Two" type="submit">
+<i class="fa-solid fa-plus"></i> Add Item
+</button>
+</div>
+</form>
+<!-- <a href="https://google.com">Google</a> -->
+</div>
 
-        <!-- Selecet Input Start-->
-        <select name="priority" id="priority-input" class="form-input-field">
-          <option value="0" class="value">Select Priority</option>
-          <option value="1" class="value">1</option>
-          <option value="2" class="value">2</option>
-          <option value="3" class="value">3</option>
-        </select>
-        <!-- Select Input End -->
-
-        <!-- Check Box Start -->
-        <div class="CheckBox">
-        <input type="checkbox" name="checkbox" id="input-checkbox">
-          Recurring Items
-        </div>
-          
-        <!-- Check Box End  -->
-
-        <button class="Two" type="submit">
-          <i class="fa-solid fa-plus"></i> Add Item
-        </button>
-      </form>
-      <!-- <a href="https://google.com">Google</a> -->
-
-      </div>
-    <div class="Filter">
-      <h4>Filter Items</h4>
-      <hr>
-      <ul id="item-list" class="items">
-        <li>Tools <button class="remove-item btn-link text-red"><i class="fa-solid fa-xmark"></i></button></li>
-        <li>Sheets<button class="remove-item btn-link text-red"><i class="fa-solid fa-xmark"></i></button></li>
-        <li>Shoes <button class="remove-item btn-link text-red"><i class="fa-solid fa-xmark"></i></button></li>
-        <li>Paper <button class="remove-item btn-link text-red"><i class="fa-solid fa-xmark"></i></button></li>
-        <li>Books <button class="remove-item btn-link text-red"><i class="fa-solid fa-xmark"></i></button></li>
-      </ul>
-     <button class="ClearAll">ClearAll</button>
-    </div>
-
-  </div>
-
-        
+<div class="Filter">
+<h4>Filter Items</h4>
+ <hr>
+<ul id="item-list" class="items">
+<li>Tools <button class="remove-item btn-link text-red"><i class="fa-solid fa-xmark"></i></button></li>
+<li>Sheets<button class="remove-item btn-link text-red"><i class="fa-solid fa-xmark"></i></button></li>
+<li>Shoes <button class="remove-item btn-link text-red"><i class="fa-solid fa-xmark"></i></button></li>
+<li>Paper <button class="remove-item btn-link text-red"><i class="fa-solid fa-xmark"></i></button></li>
+<li>Books <button class="remove-item btn-link text-red"><i class="fa-solid fa-xmark"></i></button></li>
+</ul>
+<button class="ClearAll">ClearAll</button>
+</div>
+ 
 </body>
 </html>
+
+
+        <!-- Selecet Input Start-->
+        <!-- <select name="priority" id="priority-input" class="form-input-field"> -->
+          <!-- <option value="0" class="value">Select Priority</option> -->
+          <!-- <option value="1" class="value">1</option> -->
+          <!-- <option value="2" class="value">2</option> -->
+          <!-- <option value="3" class="value">3</option> -->
+        <!-- </select> -->
+        <!-- Select Input End -->
+        
+        <!-- Check Box Start -->
+        <!-- <div class="CheckBox"> -->
+          <!-- <input type="checkbox" name="checkbox" id="input-checkbox"> -->
+          <!-- Recurring Items -->
+          <!-- </div> -->
+             
+   <!-- Check Box End  -->

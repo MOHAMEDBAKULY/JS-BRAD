@@ -1,10 +1,18 @@
 // All Elements from the DOM
-const itemForm = document.querySelector('#item-form');
+const itemForm = document.getElementById('item-form');
 const itemInput = document.querySelector('.input')
 const itemlist = document.querySelector('#item-list');
 const clearButton = document.querySelector('.clearAll');
 const filterH4 = document.querySelector('.filter');
 
+
+// DOM Loading to Display All Items
+const displayItems = () => {
+    const itemsFromLocalStorage = getItemsFromStorage();
+    itemsFromLocalStorage.forEach((item) => addItemToDOM(item));
+
+    checkListUI();
+}
 
 // Begin of Submit Function
 const onAddItemSubmit = (e) => {
@@ -32,29 +40,8 @@ const newItem = itemInput.value;
 // End of Submit Function
 
 
-// Adding Items to the DOM 
-const addItemToDOM = (item) => {
-        // Create List Items
-        const li = document.createElement('li');
-        li.appendChild(document.createTextNode(item))
-    
-        // Create a Button
-        const button = createButton('remove-item btn-link text-red');
-        li.appendChild(button);
-    
-        // Add li to the DOM
-        itemlist.appendChild(li);
-
-}
-
 const addItemToStorage = () => {
-    let itemsFromLocalStorage;
-
-    if(localStorage.getItem('items') === null){
-        itemsFromLocalStorage = [];
-    }else{
-     itemsFromLocalStorage = JSON.parse(localStorage.getItem('items'))
-    }
+    const itemsFromLocalStorage = getItemsFromStorage();
      
     // Add new items to arry
     itemsFromLocalStorage.push('items')
@@ -81,16 +68,52 @@ const createIcon = (classes) => {
     return icon
 }
 
+// Adding Items to the DOM 
+const addItemToDOM = (item) => {
+    // Create List Items
+    const li = document.createElement('li');
+    li.appendChild(document.createTextNode(item))
+
+    // Create a Button
+    const button = createButton('remove-item btn-link text-red');
+    li.appendChild(button);
+
+    // Add li to the DOM
+    itemlist.appendChild(li);
+
+}
+
+const onClickItem = (e)  => {
+    if(e.target.parentElement.classList.contains('remove-item')){
+        if(confirm('Are you sure?')){
+          onRemoveItem()
+        }
+}
+}
+
 // Remove One item at a time on the list 
 const onRemoveItem = (e)  => {
   if(e.target.parentElement.classList.contains('remove-item')){
-    if(confirm('Are you sure')){
+    if(confirm('Are you sure?')){
         e.target.parentElement.parentElement.remove();
 
 
     checkListUI();
     }
   }
+}
+
+// Get Items from Storage
+const getItemsFromStorage = () => {
+    let itemsFromLocalStorage;
+
+    if(localStorage.getItem('items') === null){
+        itemsFromLocalStorage = [];
+    }
+    else{
+     itemsFromLocalStorage = JSON.parse(localStorage.getItem('items'))
+    }
+
 }
 
 // Clear All items on the list
@@ -134,14 +157,29 @@ const checkList = document.querySelectorAll('li')
   }
 }
 
-// Event Listners
+
+// Fubction Initializer 
+const Initialize = ()  => {
+    // Event Listners
 itemForm.addEventListener('submit', onAddItemSubmit);
-itemlist.addEventListener('click', onRemoveItem);
+itemlist.addEventListener('click', onClickItem);
 clearButton.addEventListener('click', onClearAll);
 filterH4.addEventListener('input', onFitering);
-
+document.addEventListener('DOMContentLoaded', displayItems);
 
 checkListUI();
+
+}
+
+
+// Initializing the page
+Initialize();
+
+
+
+
+
+
 
 
 

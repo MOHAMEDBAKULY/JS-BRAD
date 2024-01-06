@@ -7,6 +7,10 @@
     margin-left: auto;
 }
 
+.edit-mode{
+    color: 'grey'
+}
+
 .container{
     display: flex;
     flex-direction: column;
@@ -41,7 +45,8 @@
 
  .input{
   margin-bottom: 16px;
-  color: rgb(253, 251, 251);
+  color: rgb(22, 17, 17);
+  font-size: 18px;
   background-color: rgb(212, 211, 211);
   height: 32px;
   border: 0;

@@ -4,6 +4,8 @@ const itemInput = document.querySelector('.input')
 const itemlist = document.querySelector('#item-list');
 const clearButton = document.querySelector('.clearAll');
 const filterH4 = document.querySelector('.filter');
+const formBtn = itemForm.querySelector('button')
+let isEditMode = false;
 
 
 // DOM Loading to Display All Items
@@ -39,12 +41,31 @@ const newItem = itemInput.value;
 }
 // End of Submit Function
 
+// Adding Items to the DOM 
+const addItemToDOM = (item) => {
+    // Create List Items
+    const li = document.createElement('li');
+    li.appendChild(document.createTextNode(item))
 
-const addItemToStorage = () => {
-    const itemsFromLocalStorage = getItemsFromStorage();
-     
-    // Add new items to arry
-    itemsFromLocalStorage.push('items')
+    // Create a Button
+    const button = createButton('remove-item btn-link text-red');
+    li.appendChild(button);
+
+    // Add li to the DOM
+    itemlist.appendChild(li);
+
+}
+
+
+const addItemToStorage = (item) => {
+
+    let itemsFromLocalStorage = getItemsFromStorage();
+
+
+
+     // Add new items to array
+    itemsFromLocalStorage.push(item)
+
 
     // Convert Items to JSON string and set to local storage 
     localStorage.setItem('items', JSON.stringify(itemsFromLocalStorage));
@@ -68,39 +89,53 @@ const createIcon = (classes) => {
     return icon
 }
 
-// Adding Items to the DOM 
-const addItemToDOM = (item) => {
-    // Create List Items
-    const li = document.createElement('li');
-    li.appendChild(document.createTextNode(item))
-
-    // Create a Button
-    const button = createButton('remove-item btn-link text-red');
-    li.appendChild(button);
-
-    // Add li to the DOM
-    itemlist.appendChild(li);
-
-}
 
 const onClickItem = (e)  => {
     if(e.target.parentElement.classList.contains('remove-item')){
-        if(confirm('Are you sure?')){
-          onRemoveItem()
+        // if(confirm('Are you sure?')){
+          onRemoveItem(e.target.parentElement.parentElement)
+        }  else {
+         setItemToEdit(e.target);
         }
 }
+
+// Setting The Edit Mode
+const setItemToEdit = (item) => {
+  isEditMode = true;
+   
+  itemlist.querySelectorAll('li').forEach((i) => i.classList.remove('edit-mode'))
+
+  item.classList.add('edit-mode');
+  formBtn.innerHTML = ` <i class="fa-solid fa-pen"></i> Update Item`;
+  formBtn.style.backgroundColor = '#228B22'
+  itemInput.value = item.textContent;
 }
 
 // Remove One item at a time on the list 
-const onRemoveItem = (e)  => {
-  if(e.target.parentElement.classList.contains('remove-item')){
+const onRemoveItem = (item)  => {
     if(confirm('Are you sure?')){
-        e.target.parentElement.parentElement.remove();
+     item.remove();
 
 
-    checkListUI();
+    //  Remove item from storage
+    removeItemFromStorage(item.textContent);
+
+     checkListUI();
     }
-  }
+
+}
+
+// Removing the items from Storage
+const removeItemFromStorage = (item) => {
+    let itemsFromLocalStorage = getItemsFromStorage();
+
+    // Filter Items to be Removed
+    itemsFromLocalStorage = itemsFromLocalStorage.filter((value) => 
+        value !== item
+    );
+
+    // Rest to local Storage
+    localStorage.setItem('items', JSON.stringify(itemsFromLocalStorage));
 }
 
 // Get Items from Storage
@@ -114,6 +149,8 @@ const getItemsFromStorage = () => {
      itemsFromLocalStorage = JSON.parse(localStorage.getItem('items'))
     }
 
+    return itemsFromLocalStorage;
+
 }
 
 // Clear All items on the list
@@ -121,6 +158,9 @@ const onClearAll = () => {
    while(itemlist.firstChild){
     itemlist.removeChild(itemlist.firstChild);
    }
+
+// Clear All the items On The DOM and local Storage
+localStorage.removeItem('items')
 
    checkListUI();
 }
@@ -176,22 +216,5 @@ checkListUI();
 Initialize();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// localStorage.setItem('List Item', 'Milk & butter');
-// console.log(localStorage.getItem('List Item'));
-// // localStorage.removeItem('List Item');
-// localStorage.clear();
 
 

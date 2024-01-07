@@ -28,6 +28,21 @@ const newItem = itemInput.value;
         return
     }
 
+    // Check if Edit Mode 
+    if(isEditMode){
+     const itemToEdit = itemlist.querySelector('.edit-mode');
+
+     removeItemFromStorage(itemToEdit.textContent);
+     itemToEdit.classList.remove('edit-mode');
+     itemToEdit.remove();
+     isEditMode = false;
+    } else {
+        if(checkIfItemExists(newItem)){
+            alert('That item already exists!');
+            return;
+        }
+    }
+
     // Create Item DOM element
     addItemToDOM(newItem);
 
@@ -99,11 +114,20 @@ const onClickItem = (e)  => {
         }
 }
 
+// Checking for Duplicates in the entries
+const checkIfItemExists = (item)  => {
+    const itemsFromStorage = getItemsFromStorage();
+    return  itemsFromStorage.includes(item);
+  
+}
+
+
+
 // Setting The Edit Mode
 const setItemToEdit = (item) => {
   isEditMode = true;
    
-  itemlist.querySelectorAll('li').forEach((i) => i.classList.remove('edit-mode'))
+  itemlist.querySelectorAll('li').forEach((i) => i.classList.remove('edit-mode'));
 
   item.classList.add('edit-mode');
   formBtn.innerHTML = ` <i class="fa-solid fa-pen"></i> Update Item`;
@@ -185,6 +209,8 @@ const onFitering = (e) => {
 
 // Check the UI if there are items 
 const checkListUI = () => {
+  itemInput.value = '';
+
 const checkList = document.querySelectorAll('li')
   if(checkList.length === 0){
      clearButton.style.display = 'none';
@@ -195,6 +221,11 @@ const checkList = document.querySelectorAll('li')
     filterH4.style.display = 'block';
 
   }
+
+  formBtn.innerHTML = '<i class="fa-solid fa-plus"></i> Add item';
+  formBtn.style.backgroundColor = 'black';
+
+  isEditMode = false;
 }
 
 

@@ -1,0 +1,45 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20%;
+}
+
+.box{
+   width: 300px;
+   height: auto;
+   background-color: rgb(223, 220, 216);
+   border: none;
+   border-radius: 16px;
+}
+
+.title{
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+}
+
+ .jokes{
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+} 
+
+button{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 12px;
+    background-color: rgb(102, 54, 148);
+    margin-left: 22%;
+    border: none;
+    border-radius: 8px;
+    height: 24px;
+}

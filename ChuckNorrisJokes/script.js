@@ -39,9 +39,6 @@ document.addEventListener('DOMContentLoaded', getJokes);
 
 
 
-button
-
-
 
 
 

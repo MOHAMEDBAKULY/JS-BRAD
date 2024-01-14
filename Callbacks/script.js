@@ -13,11 +13,21 @@ const posts = [
     {title: 'Post Two', body: 'This is post two'}
 ];
 
-const createPost = (post, callback)  => {
-    setTimeout(() => {
-        posts.push(post);
-        callback();
-    }, 2000)
+const createPost = (post)  => {
+    return new Promise((reslove, reject) => {
+        setTimeout(() => {
+            let error = true;
+
+            if(!error) {
+                posts.push(post);
+                reslove();
+            }else{
+                reject('The user was not found!')
+            }
+           
+           
+        }, 3000)
+    })
 }
 
 const getPosts = ()  => {
@@ -25,9 +35,26 @@ const getPosts = ()  => {
      posts.forEach((post) => {
         const div = document.createElement('div');
         div.innerHTML = `<b>${post.title}</b> - ${post.body}`;
+        div.className = "bbg-color";
+        div.style.width = "200px";
+        div.style.height = "20px";
+        div.style.background = "grey"
+        div.style.marginBottom = "10px"
+        div.style.padding = '12px'
+        div.style.borderRadius = "8px"
         document.querySelector('#posts-body').appendChild(div)
      })
-    }, 800)
+    }, 1000)
 }
 
-createPost({title: 'Post Three', body: 'This is post three'}, getPosts)
+const showError = (error) => {
+    const h3 = document.createElement('h3')
+    h3.innerHTML = `<b>${error}</b>`
+    document.querySelector('#posts-body').appendChild(h3)
+}
+
+createPost({title: 'Post Three', body: 'This is post three'})
+     .then(getPosts)
+     .catch(showError);
+        
+  

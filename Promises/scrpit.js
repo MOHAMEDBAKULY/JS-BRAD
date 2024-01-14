@@ -21,7 +21,7 @@ const getUser = new Promise((resolve, reject) => {
             resolve({ name: 'Mohamed', age: 24});
         }else {
             reject('Error: Something Went wrong')
-        }
+        }                                                                                                                                                   
     }, 1000)
 });
 

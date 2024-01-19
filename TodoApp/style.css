@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(2, 129, 87);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 540px;
+    background-color: rgb(64, 197, 197);
+    height: 600px;
+    border-radius: 16px;
+    border: none;
+    border: 3px solid rgb(0, 0, 0);
+    position: relative;
+}
+header{ 
+        position: absolute;
+        top:30px;
+        color:azure;  
+}
+
+hr{
+    margin-top: 4px;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top:100px;
+    left: 35%;
+}
+
+input{
+   width: 170px;
+   height: 30px;
+   border: none;
+   border: 2px solid black;
+   text-indent: 5px;
+   border-radius: 8px;
+}
+
+button{
+    position: absolute;
+    width: 90px;
+    top: 40px;
+    left: 25%;
+    height: 25px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(2, 129, 87);
+    color: azure;
+    font-size: 18px;
+}
+
+#todo-list{
+    position: absolute;
+    width: auto;
+    height: auto;
+    background-color: aliceblue;
+    border-radius: 8px;
+    left: 1%;
+    top:200px;
+    padding: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+#todo-list > div {
+    border: 1px #050505 solid;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  
+  .done {
+    background: #524e4e;
+  }

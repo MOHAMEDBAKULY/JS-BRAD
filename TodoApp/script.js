@@ -9,7 +9,8 @@ const getTodos = () => {
 }
 
 const addTodoToDom = (todo) => {
-    const div = document.createElement('div')
+    const div = document.createElement('div');
+    div.classList.add('todo');
     div.appendChild(document.createTextNode(todo.title));
     div.setAttribute('data-id', todo.id)
     if(todo.completed){
@@ -24,7 +25,7 @@ const createTodo = (e) => {
 
     const newTodo = {
      title:  e.target.firstElementChild.value,
-     completed: false
+     completed: false,
     }  
 
     fetch(apiUrl, {
@@ -35,14 +36,51 @@ const createTodo = (e) => {
         }
     })
     .then(res => res.json())
-    .then(data => addTodoToDom(data))
+    .then((data) => addTodoToDom(data))
 }
 
+const toggleCompleted = (e) => {
+    if(e.target.classList.contains('todo')){
+        e.target.classList.toggle('done');
+
+        updateTodo(e.target.dataset.id, e.target.classList.contains('done'))
+    }
+};
+
+const updateTodo = (id, completed)  => {
+        fetch(`${apiUrl}/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({ completed }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+};
+
+
+const deleteTodo = (e)  => {
+    if(e.target.classList.contains('todo')){
+       const id = e.target.dataset.id;
+       fetch(`${apiUrl}/${id}`, {
+        method: 'DELETE'
+       })
+       .then(res => res.json())
+       .then(() => e.target.remove())
+    }
+   
+}
 
 const loadContent = () => {
     document.addEventListener('DOMContentLoaded', getTodos);
+
     const todo = document.querySelector('#todo-form')
     todo.addEventListener('submit', createTodo)
+
+    const togglelist = document.querySelector('#todo-list')
+    togglelist.addEventListener('click', toggleCompleted)
+
+    const deletelist = document.querySelector('#todo-list')
+    deletelist.addEventListener('dblclick', deleteTodo)
 }
 
 loadContent();

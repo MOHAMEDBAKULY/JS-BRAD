@@ -1,8 +1,20 @@
 const fetctUser = () => {
    fetch('https://randomuser.me/api')
-     .then((res) => res.json())
+     .then((res) => {
+         if(!res.ok){
+            throw new Error('Request Failed')
+         }
+
+
+        return res.json()
+    })
      .then((data) => {
          displayUser(data.results[0])
+     })
+     .catch((error) => {
+        document.querySelector('#user').innerHTML = `
+        <p>${error}</p>
+        `
      })
 
 }

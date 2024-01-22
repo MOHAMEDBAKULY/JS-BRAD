@@ -9,12 +9,12 @@ const fetchJokes = () => {
              console.log('There is problem on our side')
         })
     }
-    
-    const getTheJokes = (jokes) => { 
-        const dispalyJokes = document.querySelector("#jokes");
+
+const getTheJokes = (jokes) => { 
+ const dispalyJokes = document.querySelector("#jokes");
         
-        dispalyJokes.innerHTML = `
-          <h2>${jokes.value}</h2>
+dispalyJokes.innerHTML = `
+ <h2>${jokes.value}</h2>
         `;
         
     }

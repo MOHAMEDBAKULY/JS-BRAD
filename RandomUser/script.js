@@ -14,7 +14,7 @@ const fetctUser = () => {
      .catch((error) => {
         document.querySelector('#user').innerHTML = `
         <p>${error}</p>
-        `
+        `;
      })
 
 }

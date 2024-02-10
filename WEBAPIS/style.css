@@ -1,0 +1,12 @@
+.location{
+    background: black;
+    width: 130px;
+    height: 200px;
+    border-radius: 10px;
+    color:white;
+}
+
+.location .loc{
+    list-style: none;
+    padding: 10px;
+}
